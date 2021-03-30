@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Form /> should match snapshot 1`] = `
+.c0 {
+  background-color: #fff;
+  margin: 0;
+  padding: 41px 56px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+<form
+  class="c0"
+>
+  Form component
+</form>
+`;
