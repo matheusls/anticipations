@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormGroup /> should match snapshot 1`] = `
+.c0:not(:last-of-type) {
+  margin-bottom: 26px;
+}
+
+<div
+  class="c0"
+>
+  FormGroup component
+</div>
+`;
