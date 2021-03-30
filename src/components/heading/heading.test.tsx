@@ -8,7 +8,7 @@ const { colors, fontSizes } = Theme;
 
 const defaultStyles = {
   color: colors.grayDark,
-  fontSize: fontSizes.large,
+  fontSize: fontSizes.xlarge,
   fontStyle: 'normal',
 };
 
