@@ -4,6 +4,8 @@ import normalize from 'styled-normalize';
 const GlobalStyles = createGlobalStyle`
   ${normalize}
 
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
   * {
     box-sizing: border-box;
   }
@@ -13,7 +15,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: ${({ theme: { colors } }) => colors.grayLight};
+    font-family: 'Source Sans Pro', sans-serif;
   }
 `;
 
