@@ -33,6 +33,7 @@ exports[`<LoadingDots /> should match snapshot 1`] = `
 
 <div
   class="c0"
+  data-testid="loading-dots"
 >
   <div
     class="c1"
