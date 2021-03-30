@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextHelp /> should match snapshot 1`] = `
+.c0 {
+  color: #cecece;
+  font-size: 0.688rem;
+  font-weight: 700;
+  margin: 0;
+  margin-top: 3px;
+}
+
+<p
+  class="c0"
+>
+  TextHelp component
+</p>
+`;
