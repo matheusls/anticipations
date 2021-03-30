@@ -1,7 +1,7 @@
 import { Dot, LoadingDotsStyled } from './loading-dots.styles';
 
 const LoadingDots = () => (
-  <LoadingDotsStyled>
+  <LoadingDotsStyled data-testid="loading-dots">
     <Dot />
     <Dot />
     <Dot />
