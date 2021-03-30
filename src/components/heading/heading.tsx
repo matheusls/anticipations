@@ -18,7 +18,7 @@ const Heading = styled.h1.attrs<HeadingProps>(({ level }) => ({
 }))<HeadingProps>`
   color: ${({ color = 'grayDark', theme: { colors } }) => colors[color]};
   display: block;
-  font-size: ${({ fontSize = 'large', theme: { fontSizes } }) =>
+  font-size: ${({ fontSize = 'xlarge', theme: { fontSizes } }) =>
     fontSizes[fontSize]};
   font-style: ${({ fontStyle = 'normal' }) => fontStyle};
   font-weight: 700;

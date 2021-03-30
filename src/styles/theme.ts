@@ -2,6 +2,10 @@ import { DefaultTheme } from 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    breakpoints: {
+      medium: number;
+      small: number;
+    };
     colors: {
       black: string;
       blue: string;
@@ -18,11 +22,16 @@ declare module 'styled-components' {
       small: string;
       medium: string;
       large: string;
+      xlarge: string;
     };
   }
 }
 
 const Theme: DefaultTheme = {
+  breakpoints: {
+    medium: 650,
+    small: 475,
+  },
   colors: {
     black: '#000',
     blue: '#5d9bec',
@@ -38,7 +47,8 @@ const Theme: DefaultTheme = {
     xsmall: '0.688rem',
     small: '0.875rem',
     medium: '1rem',
-    large: '1.5rem',
+    large: '1.2rem',
+    xlarge: '1.5rem',
   },
 };
 

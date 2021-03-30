@@ -1,5 +1,5 @@
 import { useForm, Controller } from 'react-hook-form';
-import { useAsyncFn } from 'react-use';
+import { createBreakpoint, useAsyncFn } from 'react-use';
 
 import {
   Anticipations,
@@ -12,6 +12,7 @@ import {
 } from 'components';
 import { fetchAnticipations } from 'services/anticipations';
 import { centsToReal, realToCents } from 'utils';
+import { Theme } from 'styles';
 
 import { AnticipationFormStyled } from './anticipation-form.styles';
 
@@ -28,7 +29,10 @@ const anticipationsPlaceholder = {
   '90': 0,
 };
 
+const useBreakpoint = createBreakpoint({ ...Theme.breakpoints });
+
 const AnticipationForm = () => {
+  const breakpoint = useBreakpoint();
   const { control, handleSubmit, register, watch } = useForm<Fields>({
     mode: 'all',
     shouldFocusError: false,
@@ -56,7 +60,11 @@ const AnticipationForm = () => {
   return (
     <AnticipationFormStyled>
       <Form aria-labelledby="form-title" onSubmit={handleSubmit(onSubmit)}>
-        <Heading id="form-title" level={1}>
+        <Heading
+          fontSize={breakpoint === 'medium' ? 'xlarge' : 'large'}
+          id="form-title"
+          level={1}
+        >
           Simule sua Antecipação
         </Heading>
         <FormGroup>
