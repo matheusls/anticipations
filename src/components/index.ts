@@ -1,3 +1,4 @@
+export { default as Form } from './form/form';
 export { default as FormGroup } from './form-group/form-group';
 export { default as Heading } from './heading/heading';
 export { default as Input } from './input/input';
