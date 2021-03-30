@@ -1,11 +1,13 @@
+import { ThemeProvider } from 'styled-components';
+
 import { Home } from 'pages';
-import { GlobalStyles } from 'styles';
+import { GlobalStyles, Theme } from 'styles';
 
 const Root = () => (
-  <>
+  <ThemeProvider theme={Theme}>
     <GlobalStyles />
     <Home />
-  </>
+  </ThemeProvider>
 );
 
 export default Root;
