@@ -98,4 +98,70 @@ describe('<AnticipationForm />', () => {
       expect(item).toHaveTextContent(`${dayText}: ${centsToReal(value)}`);
     });
   });
+
+  it('should not submit AnticipationForm and display errors correctly', async () => {
+    const { rerender } = render(<AnticipationForm />);
+
+    fireEvent.submit(screen.getByRole('form'));
+
+    await waitFor(() => rerender(<AnticipationForm />));
+
+    expect(screen.getAllByText(/este campo é obrigatório/i)).toHaveLength(3);
+  });
+
+  it('should show correct error message when installments is less them 1 or bigger than 12', async () => {
+    const { rerender } = render(<AnticipationForm />);
+
+    const installmentsInput = screen.getByLabelText(/em quantas parcelas/i);
+
+    fireEvent.change(installmentsInput, { target: { value: 0 } });
+
+    fireEvent.submit(screen.getByRole('form'));
+
+    await waitFor(() => rerender(<AnticipationForm />));
+
+    expect(
+      screen.getByText(/o número de parcelas deve ser maior ou igual a 1/i),
+    ).toBeInTheDocument();
+
+    fireEvent.change(installmentsInput, { target: { value: 13 } });
+
+    fireEvent.submit(screen.getByRole('form'));
+
+    await waitFor(() => rerender(<AnticipationForm />));
+
+    expect(
+      screen.getByText(/o número de parcelas deve ser menor ou igual a 12/i),
+    ).toBeInTheDocument();
+  });
+
+  it('should show correct error message when installments and mdr are not numbers', async () => {
+    const { rerender } = render(<AnticipationForm />);
+
+    const installmentsInput = screen.getByLabelText(/em quantas parcelas/i);
+    const mdrInput = screen.getByLabelText(/informe o percentual de mdr/i);
+
+    fireEvent.change(installmentsInput, { target: { value: 'test' } });
+    fireEvent.change(mdrInput, { target: { value: 'test' } });
+
+    fireEvent.submit(screen.getByRole('form'));
+
+    await waitFor(() => rerender(<AnticipationForm />));
+
+    expect(screen.getAllByText(/o valor deve ser um número/i)).toHaveLength(2);
+  });
+
+  it('should show correct error message when mdr is below zero', async () => {
+    const { rerender } = render(<AnticipationForm />);
+
+    const mdrInput = screen.getByLabelText(/informe o percentual de mdr/i);
+
+    fireEvent.change(mdrInput, { target: { value: -1 } });
+
+    fireEvent.submit(screen.getByRole('form'));
+
+    await waitFor(() => rerender(<AnticipationForm />));
+
+    expect(screen.getByText(/o valor deve ser positivo/i)).toBeInTheDocument();
+  });
 });
