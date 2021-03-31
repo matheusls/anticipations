@@ -7,7 +7,7 @@ type TextHelpProps = {
 };
 
 const TextHelp = styled.p<TextHelpProps>`
-  color: ${({ color = 'gray', theme: { colors } }) => colors[color]};
+  color: ${({ color = 'red', theme: { colors } }) => colors[color]};
   font-size: ${({ theme: { fontSizes } }) => fontSizes.xsmall};
   font-weight: 700;
   margin: 0;

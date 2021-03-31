@@ -15,6 +15,7 @@ declare module 'styled-components' {
       gray: string;
       grayDark: string;
       grayLight: string;
+      red: string;
       white: string;
     };
     fontSizes: {
@@ -41,6 +42,7 @@ const Theme: DefaultTheme = {
     gray: '#cecece',
     grayDark: '#656565',
     grayLight: '#f2f2f2',
+    red: '#f00',
     white: '#fff',
   },
   fontSizes: {
