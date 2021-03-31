@@ -1,9 +1,10 @@
-import { Main } from 'components';
+import { AnticipationForm } from 'containers';
+import { HomeStyled } from './home.styles';
 
 const Home = () => (
-  <Main>
-    <h1>Home Page</h1>
-  </Main>
+  <HomeStyled>
+    <AnticipationForm />
+  </HomeStyled>
 );
 
 export default Home;
