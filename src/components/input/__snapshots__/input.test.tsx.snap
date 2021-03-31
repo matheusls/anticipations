@@ -27,5 +27,8 @@ exports[`<Input /> should match snapshot 1`] = `
     placeholder="Input Component Placeholder"
     type="text"
   />
+  <div
+    class="Toastify"
+  />
 </div>
 `;

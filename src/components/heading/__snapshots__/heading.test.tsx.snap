@@ -19,5 +19,8 @@ exports[`<Heading /> should match snapshot 1`] = `
   >
     Heading Component
   </h1>
+  <div
+    class="Toastify"
+  />
 </div>
 `;
