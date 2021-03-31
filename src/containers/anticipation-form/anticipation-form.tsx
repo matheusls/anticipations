@@ -11,8 +11,8 @@ import {
   TextHelp,
 } from 'components';
 import { fetchAnticipations } from 'services/anticipations';
-import { centsToReal, realToCents } from 'utils';
 import { Theme } from 'styles';
+import { centsToReal, realToCents } from 'utils';
 
 import { AnticipationFormStyled } from './anticipation-form.styles';
 
@@ -28,16 +28,20 @@ const anticipationsPlaceholder = {
   '30': 0,
   '90': 0,
 };
-
+const maxInstallments = 12;
+const minInstallments = 1;
+const requiredMessage = 'Este campo é obrigatório';
 const useBreakpoint = createBreakpoint({ ...Theme.breakpoints });
 
 const AnticipationForm = () => {
   const breakpoint = useBreakpoint();
-  const { control, handleSubmit, register, watch } = useForm<Fields>({
-    mode: 'all',
-    shouldFocusError: false,
-  });
 
+  const { control, formState, handleSubmit, register, watch } = useForm<Fields>(
+    {
+      mode: 'all',
+    },
+  );
+  const { errors } = formState;
   const watchFields = watch();
 
   const [
@@ -46,11 +50,13 @@ const AnticipationForm = () => {
   ] = useAsyncFn(async () => {
     const { amount, installments, mdr } = watchFields;
 
-    return await fetchAnticipations({
+    const data = await fetchAnticipations({
       amount,
       installments: Number(installments),
       mdr: Number(mdr),
     });
+
+    return data;
   }, [watchFields]);
 
   const onSubmit = () => {
@@ -72,12 +78,17 @@ const AnticipationForm = () => {
             Informe o valor da venda
           </Label>
           <Controller
-            name="amount"
-            control={control}
             defaultValue={0}
+            control={control}
+            name="amount"
+            rules={{
+              required: { value: true, message: requiredMessage },
+              validate: (value) => value > 0 || requiredMessage,
+            }}
             render={({ name, value, onChange }) => {
               return (
                 <Input
+                  autoFocus
                   id="amount"
                   name={name}
                   value={centsToReal(value)}
@@ -86,21 +97,60 @@ const AnticipationForm = () => {
               );
             }}
           />
+          {errors?.amount?.message && (
+            <TextHelp>{errors.amount.message}</TextHelp>
+          )}
         </FormGroup>
 
         <FormGroup>
           <Label htmlFor="installments" isRequired>
             Em quantas parcelas
           </Label>
-          <Input id="installments" name="installments" ref={register} />
-          <TextHelp>Máximo de 12 parcelas</TextHelp>
+          <Input
+            id="installments"
+            name="installments"
+            ref={register({
+              max: {
+                value: maxInstallments,
+                message: 'O número de parcelas deve ser menor ou igual a 12',
+              },
+              min: {
+                value: minInstallments,
+                message: 'O número de parcelas deve ser maior ou igual a 1',
+              },
+              required: { value: true, message: requiredMessage },
+              validate: (value) =>
+                !isNaN(Number(value)) || 'O valor deve ser um número',
+              valueAsNumber: true,
+            })}
+          />
+          {!errors?.installments && (
+            <TextHelp color="gray">Máximo de 12 parcelas</TextHelp>
+          )}
+          {errors?.installments?.message && (
+            <TextHelp>{errors.installments.message}</TextHelp>
+          )}
         </FormGroup>
 
         <FormGroup>
           <Label htmlFor="mdr" isRequired>
             Informe o percentual de MDR
           </Label>
-          <Input id="mdr" name="mdr" ref={register} />
+          <Input
+            id="mdr"
+            name="mdr"
+            ref={register({
+              min: {
+                value: 0,
+                message: 'O valor deve ser positivo',
+              },
+              required: { value: true, message: requiredMessage },
+              validate: (value) =>
+                !isNaN(Number(value)) || 'O valor deve ser um número',
+              valueAsNumber: true,
+            })}
+          />
+          {errors?.mdr?.message && <TextHelp>{errors.mdr.message}</TextHelp>}
         </FormGroup>
 
         <input type="submit" style={{ display: 'none' }} />
