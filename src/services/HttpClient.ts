@@ -6,16 +6,28 @@ class HttpClient {
   }
 
   async post(body: Record<string, unknown>) {
-    const response = await fetch(this.url, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
+    try {
+      const response = await fetch(this.url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
 
-    return await response.json();
+      if (!response.ok) {
+        throw new Error(response.status.toString());
+      }
+
+      return await response.json();
+    } catch (error) {
+      if (error instanceof Error) {
+        throw error;
+      }
+
+      throw new Error(error);
+    }
   }
 }
 
