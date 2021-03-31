@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render } from 'tests/utils';
 
 import Home from './home';
 
@@ -7,11 +7,5 @@ describe('<Home />', () => {
     const { container } = render(<Home />);
 
     expect(container).toMatchSnapshot();
-  });
-
-  it('should render Home correctly', () => {
-    render(<Home />);
-
-    expect(screen.getByText(/Home Page/i)).toBeInTheDocument();
   });
 });

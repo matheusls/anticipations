@@ -1,13 +1,311 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Home /> should match snapshot 1`] = `
+.c8 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: rgba(209,220,227,0.18);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 35px;
+}
+
+.c10 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.c11 {
+  color: #5d9bec;
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 46px;
+  width: 100%;
+}
+
+.c2 {
+  background-color: #fff;
+  margin: 0;
+  padding: 10px 16px 20px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.c4:not(:last-of-type) {
+  margin-bottom: 26px;
+}
+
+.c9 {
+  color: #3d75bb;
+  display: block;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 22px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.c9::after {
+  background-color: #5d9bec;
+  content: '';
+  display: block;
+  height: 1px;
+  margin-top: 4px;
+  mix-blend-mode: normal;
+  opacity: 0.3;
+  width: 100%;
+}
+
+.c3 {
+  color: #656565;
+  display: block;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 22px;
+  text-transform: none;
+  width: 100%;
+}
+
+.c6 {
+  color: #000;
+  border: 1px solid;
+  border-color: #dde6e9;
+  border-radius: 4px;
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1;
+  margin-bottom: 3px;
+  padding: 10px 14px;
+  width: 100%;
+}
+
+.c6:focus {
+  border-color: #66afe9;
+  outline: none;
+}
+
+.c5 {
+  color: #656565;
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.c5::after {
+  content: ' *';
+}
+
+.c7 {
+  color: #cecece;
+  font-size: 0.688rem;
+  font-weight: 700;
+  margin: 0;
+  margin-top: 3px;
+}
+
+.c1 {
+  border-radius: 4px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.25);
+  display: grid;
+  grid-template-columns: 100%;
+  overflow: hidden;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.c0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 2rem;
+  width: 100vw;
+}
+
+@media (min-width:475px) {
+  .c2 {
+    padding: 10px 27px 20px;
+  }
+}
+
+@media (min-width:650px) {
+  .c2 {
+    padding: 41px 56px;
+  }
+}
+
+@media (min-width:650px) {
+  .c1 {
+    grid-template-columns: max-content max-content;
+  }
+}
+
+@media (min-width:650px) {
+  .c0 {
+    height: 100vh;
+  }
+}
+
 <div>
   <main
-    class=""
+    class="c0"
   >
-    <h1>
-      Home Page
-    </h1>
+    <div
+      class="c1"
+    >
+      <form
+        aria-labelledby="form-title"
+        class="c2"
+      >
+        <h1
+          class="c3"
+          font-size="xlarge"
+          id="form-title"
+        >
+          Simule sua Antecipação
+        </h1>
+        <div
+          class="c4"
+        >
+          <label
+            class="c5"
+            for="amount"
+          >
+            Informe o valor da venda
+          </label>
+          <input
+            class="c6"
+            id="amount"
+            name="amount"
+            value="R$0.00"
+          />
+        </div>
+        <div
+          class="c4"
+        >
+          <label
+            class="c5"
+            for="installments"
+          >
+            Em quantas parcelas
+          </label>
+          <input
+            class="c6"
+            id="installments"
+            name="installments"
+          />
+          <p
+            class="c7"
+            color="gray"
+          >
+            Máximo de 12 parcelas
+          </p>
+        </div>
+        <div
+          class="c4"
+        >
+          <label
+            class="c5"
+            for="mdr"
+          >
+            Informe o percentual de MDR
+          </label>
+          <input
+            class="c6"
+            id="mdr"
+            name="mdr"
+          />
+        </div>
+        <input
+          style="display: none;"
+          type="submit"
+        />
+      </form>
+      <div
+        class="c8"
+      >
+        <h2
+          class="c9"
+          color="blueDark"
+          font-size="medium"
+          font-style="italic"
+        >
+          Você receberá:
+        </h2>
+        <ul
+          class="c10"
+        >
+          <li
+            class="c11"
+          >
+            Amanhã
+            : 
+            <strong>
+              R$0.00
+            </strong>
+          </li>
+          <li
+            class="c11"
+          >
+            Em 15 dias
+            : 
+            <strong>
+              R$0.00
+            </strong>
+          </li>
+          <li
+            class="c11"
+          >
+            Em 30 dias
+            : 
+            <strong>
+              R$0.00
+            </strong>
+          </li>
+          <li
+            class="c11"
+          >
+            Em 90 dias
+            : 
+            <strong>
+              R$0.00
+            </strong>
+          </li>
+        </ul>
+      </div>
+    </div>
   </main>
+  <div
+    class="Toastify"
+  />
 </div>
 `;
