@@ -1,6 +1,6 @@
 import HttpClient from 'services/HttpClient';
 
-type Transaction = {
+export type Transaction = {
   amount: number;
   installments: number;
   mdr: number;
@@ -9,7 +9,7 @@ type Transaction = {
 
 const baseUrl = process.env.REACT_APP_BASE_URL || '';
 
-const httpClient = new HttpClient(`${baseUrl}/?delay=3000`);
+const httpClient = new HttpClient(baseUrl);
 
 export const fetchAnticipations = async (transaction: Transaction) => {
   return await httpClient.post(transaction);

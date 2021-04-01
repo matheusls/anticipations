@@ -12,17 +12,11 @@ import {
   TextHelp,
 } from 'components';
 import { useNavigatorOnline, useTimeout } from 'hooks';
-import { fetchAnticipations } from 'services/anticipations';
+import { fetchAnticipations, Transaction } from 'services/anticipations';
 import { Theme } from 'styles';
 import { centsToReal, realToCents, renderErrorToast } from 'utils';
 
 import { AnticipationFormStyled } from './anticipation-form.styles';
-
-type Fields = {
-  amount: number;
-  installments: number;
-  mdr: number;
-};
 
 const anticipationsPlaceholder = {
   '1': 0,
@@ -48,7 +42,7 @@ const AnticipationForm = () => {
     getValues,
     handleSubmit,
     register,
-  } = useForm<Fields>({
+  } = useForm<Transaction>({
     mode: 'all',
   });
   const { errors } = formState;
@@ -57,7 +51,7 @@ const AnticipationForm = () => {
     { error: requestError, loading, value: anticipations },
     makeRequest,
   ] = useAsyncFn(
-    async (transaction: Fields) => {
+    async (transaction: Transaction) => {
       start();
 
       const data = await fetchAnticipations(transaction);
@@ -70,7 +64,7 @@ const AnticipationForm = () => {
   );
   const statusCode = requestError?.message;
 
-  const onSubmit = (data: Fields) => {
+  const onSubmit = (data: Transaction) => {
     if (!isOnline) {
       return renderErrorToast('offline');
     }
