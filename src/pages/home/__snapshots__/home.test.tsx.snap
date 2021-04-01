@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Home /> should match snapshot 1`] = `
-.c8 {
+.c9 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -21,14 +21,14 @@ exports[`<Home /> should match snapshot 1`] = `
   padding: 35px;
 }
 
-.c10 {
+.c11 {
   list-style: none;
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
-.c11 {
+.c12 {
   color: #5d9bec;
   font-size: 1rem;
   font-style: italic;
@@ -49,7 +49,7 @@ exports[`<Home /> should match snapshot 1`] = `
   margin-bottom: 26px;
 }
 
-.c9 {
+.c10 {
   color: #3d75bb;
   display: block;
   font-size: 1rem;
@@ -61,7 +61,7 @@ exports[`<Home /> should match snapshot 1`] = `
   width: 100%;
 }
 
-.c9::after {
+.c10::after {
   background-color: #5d9bec;
   content: '';
   display: block;
@@ -82,6 +82,10 @@ exports[`<Home /> should match snapshot 1`] = `
   margin-bottom: 22px;
   text-transform: none;
   width: 100%;
+}
+
+.c8 {
+  display: none;
 }
 
 .c6 {
@@ -245,15 +249,15 @@ exports[`<Home /> should match snapshot 1`] = `
           />
         </div>
         <input
-          style="display: none;"
+          class="c8"
           type="submit"
         />
       </form>
       <div
-        class="c8"
+        class="c9"
       >
         <h2
-          class="c9"
+          class="c10"
           color="blueDark"
           font-size="medium"
           font-style="italic"
@@ -261,10 +265,10 @@ exports[`<Home /> should match snapshot 1`] = `
           Você receberá:
         </h2>
         <ul
-          class="c10"
+          class="c11"
         >
           <li
-            class="c11"
+            class="c12"
           >
             Amanhã
             : 
@@ -273,7 +277,7 @@ exports[`<Home /> should match snapshot 1`] = `
             </strong>
           </li>
           <li
-            class="c11"
+            class="c12"
           >
             Em 15 dias
             : 
@@ -282,7 +286,7 @@ exports[`<Home /> should match snapshot 1`] = `
             </strong>
           </li>
           <li
-            class="c11"
+            class="c12"
           >
             Em 30 dias
             : 
@@ -291,7 +295,7 @@ exports[`<Home /> should match snapshot 1`] = `
             </strong>
           </li>
           <li
-            class="c11"
+            class="c12"
           >
             Em 90 dias
             : 
