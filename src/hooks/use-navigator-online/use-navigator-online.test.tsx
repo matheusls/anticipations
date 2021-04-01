@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 
-import useNavigatorOnline from './useNavigatorOnline';
+import useNavigatorOnline from './use-navigator-online';
 
 describe('useNavigatorOnline', () => {
   const navigatorMock = jest.spyOn(navigator, 'onLine', 'get');
