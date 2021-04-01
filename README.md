@@ -28,6 +28,12 @@ Or with NPM
 $ npm i
 ```
 
+Copy the local.env and set the variables accordingly
+
+```(shell)
+$ cp local.env .env.local
+```
+
 Run the project locally
 
 ```(shell)
