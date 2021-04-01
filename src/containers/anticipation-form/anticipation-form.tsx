@@ -10,9 +10,10 @@ import {
   Label,
   TextHelp,
 } from 'components';
+import { useNavigatorOnline } from 'hooks';
 import { fetchAnticipations } from 'services/anticipations';
 import { Theme } from 'styles';
-import { centsToReal, realToCents } from 'utils';
+import { centsToReal, realToCents, renderErrorToast } from 'utils';
 
 import { AnticipationFormStyled } from './anticipation-form.styles';
 
@@ -35,32 +36,28 @@ const useBreakpoint = createBreakpoint({ ...Theme.breakpoints });
 
 const AnticipationForm = () => {
   const breakpoint = useBreakpoint();
+  const isOnline = useNavigatorOnline();
 
-  const { control, formState, handleSubmit, register, watch } = useForm<Fields>(
-    {
-      mode: 'all',
-    },
-  );
+  const { control, formState, handleSubmit, register } = useForm<Fields>({
+    mode: 'all',
+  });
   const { errors } = formState;
-  const watchFields = watch();
 
-  const [
-    { loading, value: anticipations },
-    makeRequest,
-  ] = useAsyncFn(async () => {
-    const { amount, installments, mdr } = watchFields;
+  const [{ loading, value: anticipations }, makeRequest] = useAsyncFn(
+    async (transaction: Fields) => {
+      const data = await fetchAnticipations(transaction);
 
-    const data = await fetchAnticipations({
-      amount,
-      installments: Number(installments),
-      mdr: Number(mdr),
-    });
+      return data;
+    },
+    [isOnline],
+  );
 
-    return data;
-  }, [watchFields]);
+  const onSubmit = (data: Fields) => {
+    if (!isOnline) {
+      return renderErrorToast('offline');
+    }
 
-  const onSubmit = () => {
-    makeRequest();
+    makeRequest(data);
   };
 
   return (
