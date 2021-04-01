@@ -7,6 +7,7 @@ import {
   Form,
   FormGroup,
   Heading,
+  HiddenSubmit,
   Input,
   Label,
   TextHelp,
@@ -184,7 +185,7 @@ const AnticipationForm = () => {
           {errors?.mdr?.message && <TextHelp>{errors.mdr.message}</TextHelp>}
         </FormGroup>
 
-        <input type="submit" style={{ display: 'none' }} />
+        <HiddenSubmit />
       </Form>
       <Anticipations
         anticipations={Object.entries(
