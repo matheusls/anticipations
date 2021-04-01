@@ -45,7 +45,10 @@ const AnticipationForm = () => {
   });
   const { errors } = formState;
 
-  const [{ loading, value: anticipations }, makeRequest] = useAsyncFn(
+  const [
+    { error: requestError, loading, value: anticipations },
+    makeRequest,
+  ] = useAsyncFn(
     async (transaction: Fields) => {
       start();
 
@@ -67,10 +70,18 @@ const AnticipationForm = () => {
   };
 
   useEffect(() => {
-    if (isReady) {
+    if (isReady && !requestError) {
       renderErrorToast('slowRequest');
     }
-  }, [isReady]);
+  }, [isReady, requestError]);
+
+  useEffect(() => {
+    if (requestError) {
+      const statusCode = requestError.message;
+
+      renderErrorToast(statusCode);
+    }
+  }, [requestError]);
 
   return (
     <AnticipationFormStyled>
