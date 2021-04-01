@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { createBreakpoint, useAsyncFn } from 'react-use';
 
@@ -33,14 +33,22 @@ const anticipationsPlaceholder = {
 const maxInstallments = 12;
 const minInstallments = 1;
 const requiredMessage = 'Este campo é obrigatório';
+const retryLimit = 1;
 const useBreakpoint = createBreakpoint({ ...Theme.breakpoints });
 
 const AnticipationForm = () => {
   const breakpoint = useBreakpoint();
   const isOnline = useNavigatorOnline();
+  const [retryCount, setRetryCount] = useState(0);
   const { isReady, start, cancel } = useTimeout(2000);
 
-  const { control, formState, handleSubmit, register } = useForm<Fields>({
+  const {
+    control,
+    formState,
+    getValues,
+    handleSubmit,
+    register,
+  } = useForm<Fields>({
     mode: 'all',
   });
   const { errors } = formState;
@@ -60,6 +68,7 @@ const AnticipationForm = () => {
     },
     [isOnline],
   );
+  const statusCode = requestError?.message;
 
   const onSubmit = (data: Fields) => {
     if (!isOnline) {
@@ -76,12 +85,20 @@ const AnticipationForm = () => {
   }, [isReady, requestError]);
 
   useEffect(() => {
-    if (requestError) {
-      const statusCode = requestError.message;
-
+    if (statusCode && statusCode !== '408') {
       renderErrorToast(statusCode);
     }
-  }, [requestError]);
+  }, [statusCode]);
+
+  useEffect(() => {
+    const shouldRetry = statusCode === '408' && retryCount < retryLimit;
+
+    if (shouldRetry) {
+      setRetryCount(retryCount + 1);
+      renderErrorToast(statusCode);
+      makeRequest(getValues());
+    }
+  }, [makeRequest, getValues, retryCount, statusCode]);
 
   return (
     <AnticipationFormStyled>
