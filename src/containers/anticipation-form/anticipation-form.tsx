@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { createBreakpoint, useAsyncFn } from 'react-use';
 
@@ -10,7 +11,7 @@ import {
   Label,
   TextHelp,
 } from 'components';
-import { useNavigatorOnline } from 'hooks';
+import { useNavigatorOnline, useTimeout } from 'hooks';
 import { fetchAnticipations } from 'services/anticipations';
 import { Theme } from 'styles';
 import { centsToReal, realToCents, renderErrorToast } from 'utils';
@@ -37,6 +38,7 @@ const useBreakpoint = createBreakpoint({ ...Theme.breakpoints });
 const AnticipationForm = () => {
   const breakpoint = useBreakpoint();
   const isOnline = useNavigatorOnline();
+  const { isReady, start, cancel } = useTimeout(2000);
 
   const { control, formState, handleSubmit, register } = useForm<Fields>({
     mode: 'all',
@@ -45,7 +47,11 @@ const AnticipationForm = () => {
 
   const [{ loading, value: anticipations }, makeRequest] = useAsyncFn(
     async (transaction: Fields) => {
+      start();
+
       const data = await fetchAnticipations(transaction);
+
+      if (!isReady) cancel();
 
       return data;
     },
@@ -59,6 +65,12 @@ const AnticipationForm = () => {
 
     makeRequest(data);
   };
+
+  useEffect(() => {
+    if (isReady) {
+      renderErrorToast('slowRequest');
+    }
+  }, [isReady]);
 
   return (
     <AnticipationFormStyled>
